@@ -1,0 +1,22 @@
+name: CI
+on: push
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8.3
+          architecture: x64
+      - uses: actions/checkout@v2
+      - name: Install flake8 and nose2
+        run: pip install flake8 nose2
+      - name: Run linting
+        uses: suo/flake8-github-action@releases/v1
+        with:
+          checkName: 'lint'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run tests
+        run: python -m nose2

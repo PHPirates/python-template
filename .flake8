@@ -1,0 +1,4 @@
+[flake8]
+exclude = venv, assignment1/assignment, assignment1/test/naive_model.py
+max-line-length = 220
+ignore = W605 W504
